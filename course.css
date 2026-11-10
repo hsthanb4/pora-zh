@@ -140,6 +140,13 @@ mjx-container{display:inline-block}
 .card .eq:hover{background:rgba(255,255,255,.5)}
 .card p:last-child{margin-bottom:6px}
 
+/* tables */
+.tbl-wrap{margin:22px 0;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.6;background:var(--panel);border-radius:6px;border:1px solid var(--line)}
+th,td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+th{background:rgba(24,20,12,.03);font-weight:650;color:var(--ink)}
+tr:nth-child(even){background:rgba(24,20,12,.015)}
+
 /* code */
 pre.code{
   margin:12px 0;padding:14px 16px;border-radius:6px;overflow-x:auto;

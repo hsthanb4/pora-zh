@@ -20,6 +20,8 @@ const tex = new TeX({
     qquad: '\\quad\\quad',
     implies: '\\;\\Longrightarrow\\;',
     dd: '\\mathrm{d}',
+    allowbreak: '',
+    textsc: ['\\text{#1}', 1],
   },
 });
 const svg = new SVG({ fontCache: 'global' });
@@ -90,12 +92,28 @@ function tokenize(raw) {
       blocks.push({ type: 'list', items });
       continue;
     }
+    // table
+    if (t.startsWith('|') && t.endsWith('|') && t.includes('|')) {
+      const rows = [];
+      while (i < lines.length && lines[i].trim().startsWith('|') && lines[i].trim().endsWith('|')) {
+        const rowStr = lines[i].trim();
+        if (!/^\|[\s\-:|]+\|$/.test(rowStr)) {
+          const cells = rowStr.slice(1, -1).split('|').map((c) => c.trim());
+          rows.push(cells);
+        }
+        i++;
+      }
+      if (rows.length > 0) {
+        blocks.push({ type: 'table', header: rows[0], rows: rows.slice(1) });
+        continue;
+      }
+    }
     const buf = [];
     while (i < lines.length) {
       const s = lines[i].trim();
       if (!s) break;
       if (s.startsWith('```') || s.startsWith('$$') || s.startsWith(':::') || /^#{1,4}\s/.test(s) ||
-          /^!\[.*\]\(.*\)$/.test(s) || /^[-*]\s+/.test(s)) break;
+          /^!\[.*\]\(.*\)$/.test(s) || /^[-*]\s+/.test(s) || (s.startsWith('|') && s.endsWith('|'))) break;
       buf.push(s); i++;
     }
     blocks.push({ type: 'p', text: buf.join(' ') });
@@ -165,6 +183,12 @@ function buildChapter(ch, prev, next) {
       const num = b.label && /^eq\d/.test(b.label) ? b.label.slice(2) : null;
       const inner = renderMath(b.tex, true);
       tgt().push(`<div class="${num ? 'eq' : 'eq plain'}"${b.label ? ` id="eq-${b.label}"` : ''}><div class="eq-body">${inner}</div>${num ? `<span class="eq-num">(${num})</span>` : ''}</div>`);
+      continue;
+    }
+    if (b.type === 'table') {
+      const ths = b.header.map((c) => `<th>${inline(c)}</th>`).join('');
+      const trs = b.rows.map((r) => `<tr>${r.map((c) => `<td>${inline(c)}</td>`).join('')}</tr>`).join('\n');
+      tgt().push(`<div class="tbl-wrap"><table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table></div>`);
       continue;
     }
     if (b.type === 'code') { tgt().push(`<pre class="code"><code>${esc(b.text)}</code></pre>`); continue; }
