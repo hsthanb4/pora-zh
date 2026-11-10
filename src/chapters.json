@@ -1,0 +1,21 @@
+[
+  {"n":"01","slug":"robot-dynamics","zh":"机器人动力学建模","en":"Modeling Robot Dynamics","ex":4},
+  {"n":"02","slug":"open-loop-control","zh":"开环控制与轨迹优化","en":"Open-Loop Control & Trajectory Optimization","ex":5},
+  {"n":"03","slug":"closed-loop-control","zh":"闭环控制与轨迹跟踪","en":"Closed-Loop Control & Trajectory Tracking","ex":7},
+  {"n":"04","slug":"motion-planning","zh":"运动规划","en":"Motion Planning","ex":3},
+  {"n":"05","slug":"robot-sensors","zh":"机器人传感器导论","en":"Introduction to Robot Sensors","ex":0},
+  {"n":"06","slug":"camera-models","zh":"相机模型与标定","en":"Camera Models and Calibration","ex":3},
+  {"n":"07","slug":"stereo-vision","zh":"立体视觉与运动恢复结构","en":"Stereo Vision and Structure From Motion","ex":0},
+  {"n":"08","slug":"classical-perception","zh":"经典感知方法","en":"Classical Methods for Perception","ex":2},
+  {"n":"09","slug":"deep-learning-perception","zh":"感知的深度学习架构","en":"Deep Learning Architectures for Perception","ex":1},
+  {"n":"10","slug":"object-detection","zh":"目标检测与识别","en":"Object Detection and Recognition","ex":1},
+  {"n":"11","slug":"localization-filtering","zh":"定位与滤波导论","en":"Introduction to Localization and Filtering","ex":1},
+  {"n":"12","slug":"approximate-filters","zh":"状态估计的近似滤波","en":"Approximate Filters for State Estimation","ex":2},
+  {"n":"13","slug":"robot-localization","zh":"机器人定位","en":"Robot Localization","ex":2},
+  {"n":"14","slug":"slam","zh":"同步定位与建图（SLAM）","en":"Simultaneous Localization and Mapping","ex":3},
+  {"n":"15","slug":"sensor-fusion","zh":"传感器融合与目标跟踪","en":"Sensor Fusion and Object Tracking","ex":1},
+  {"n":"16","slug":"finite-state-machines","zh":"有限状态机","en":"Finite State Machines","ex":0},
+  {"n":"17","slug":"decision-making","zh":"序列决策与动态规划","en":"Sequential Decision Making and Dynamic Programming","ex":1},
+  {"n":"18","slug":"reinforcement-learning","zh":"强化学习","en":"Reinforcement Learning","ex":4},
+  {"n":"19","slug":"imitation-learning","zh":"模仿学习","en":"Imitation Learning","ex":0}
+]
